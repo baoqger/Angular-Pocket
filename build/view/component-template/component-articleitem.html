@@ -1,0 +1,10 @@
+<div class="item-content" ng-mouseover="articleitem.showActionList()" ng-mouseleave="articleitem.hideActionList()">
+    <p class="article-title ellipsis-threelines-new" >{{articleitem.myArticle.title}}</p>
+    <img class="lead-image" ng-src="{{articleitem.myArticle.lead_image_url}}" ></img>
+    <div class="bottom-container">
+        <div class="bottom-inform">
+            <a class="original-link">{{articleitem.myArticle.domain}}</a>
+            <action-list view="{{articleitem.view}}" index="{{articleitem.index}}" show="articleitem.showactionlist" current-article="articleitem.myArticle"></action-list>
+        </div>
+    </div>
+</div>

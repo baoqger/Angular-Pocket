@@ -1,0 +1,12 @@
+<ul class="action-list">
+    <li class="action-item" data-toggle="tooltip" title="Share" ng-show="actionlist.show"><span class="glyphicon glyphicon-share-alt"></span></li>
+    <li class="action-item" data-toggle="tooltip" title="Archive" ng-show="actionlist.show && actionlist.view === 'mylist'" ng-click="actionlist.archive()"><span class="glyphicon glyphicon-ok"></span></li>
+    <li class="action-item" data-toggle="tooltip" title="Add to List" ng-show="actionlist.show && actionlist.view === 'archive'" ng-click="actionlist.addBacktoList()"><span class="glyphicon glyphicon-plus"></span></li>
+    <li class="action-item" data-toggle="tooltip"  ng-show="actionlist.show && actionlist.view === 'favorites'">
+        <span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="Add to List" ng-click="actionlist.addBacktoList()" ng-show="actionlist.currentArticle.isArchive"></span>
+        <span class="glyphicon glyphicon-ok"   data-toggle="tooltip" title="Archive" ng-click="actionlist.archive()" ng-show="!actionlist.currentArticle.isArchive"></span>
+    </li>
+    <li class="action-item" data-toggle="modal" title="Delete" data-backdrop="true" ng-show="actionlist.show"><span  class="glyphicon glyphicon-trash"></span></li>
+    <li class="action-item" data-toggle="modal" title="Edit Tags" data-backdrop="true" ng-show="actionlist.show"><span class="glyphicon glyphicon-tag"></span></li>
+    <li class="action-item" data-toggle="tooltip" title="Favorite" ng-show="actionlist.show || actionlist.currentArticle.isFavorite" ng-class="{'favorite-item': actionlist.currentArticle.isFavorite}" ng-click="actionlist.toggleFavorite()"><span class="glyphicon glyphicon-star"></span></li>
+</ul>

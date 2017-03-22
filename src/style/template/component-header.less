@@ -1,0 +1,55 @@
+.header {
+	background: @headerBgColor;
+	.h(50);
+	color: @fontColor;
+	font-style: normal;
+	border-bottom: 1px solid #ccc;
+
+    ul.navigation {
+        list-style: none;
+        margin: 0;
+    }
+    
+    .navi-item {
+        display: inline-block;
+        .mr(20);
+        vertical-align: middle;
+        .fs(15);
+        padding: 13px;
+        
+        a {
+            text-decoration: none;
+            color: @fontColor;
+            
+            &:hover {
+                color:@highlightFontColor;
+            }
+        }
+    
+        &#brandlist {
+        .fs(20);
+        }
+        
+        &.active {
+            border-bottom: 2px solid @highlightFontColor;
+            a {
+               color: @highlightFontColor; 
+            }
+        }
+    }
+    
+    ul.navigation-right {
+        .t(2);
+        .r(100);
+        
+        .navi-item {
+            .mr(2);
+            padding:13px 5px;
+            &:hover {
+                color:@highlightFontColor;
+            }
+        }
+    }
+    
+
+}

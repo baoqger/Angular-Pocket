@@ -1,0 +1,53 @@
+.main-panel {
+    height: 100%;
+    
+    .main-leftpanel {
+        height: 100%;
+        .w(140);
+        background: @headerBgColor;
+        
+        .main-controlpanel {
+            list-style: none;
+            .mt(30);
+            text-align: center;
+            .fs(15);
+            
+            .main-controlitem {
+                .lh(22.5);
+                padding: 4.8px 0;
+                
+                a {
+                    color: @fontColor;
+                    font-style:normal;
+                    font-weight: normal;
+                    text-decoration: none;
+                    
+                    &:hover {
+                        color: @highlightFontColor;
+                    }
+                }
+                
+                &.active {
+                    a {
+                       color: @highlightFontColor; 
+                    }
+                }
+            }
+        }
+        
+        .horizontalline {
+            border: 1px solid #ccc;
+            .w(30);
+            margin: 0 auto;
+        }
+        .main-controlpanel-bottom {
+	        margin:10px 0;
+        }
+    }
+    .main-righpanel {
+        width:calc(~"100% - 140px");
+        float: right;
+        padding: 15px 0 0 60px;
+    }
+}
+

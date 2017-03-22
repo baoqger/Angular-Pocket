@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <title>Angular-Pocket</title>
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" /> 
+	<link  rel="stylesheet" type="text/css" href="css/index.css"></link>
+</head>
+<body ng-controller="topCtrl as top">
+    <app-header toggle-urldialog = "top.toggleDialog()"></app-header>
+    <my-dialog show="top.dialogShown" box-width="400px" box-height="170px" >
+<!-- 			  <div class="modal-content save-url">-->
+				<div class="modal-header save-url-header">
+<!--				  <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+				  <h4 class="modal-title save-url-title">Save an item to ReadLater</h4>
+				</div>
+				<div class="modal-body save-url-body">
+					<div class="form-group form-horizontal">
+						<div class="col-sm-10">
+							<input type="text" class="form-control" placeholder="http://..." id="url" ng-model="top.newURL">
+						</div>
+						<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="top.addNewURL()">Save</button>
+					</div>					
+				</div> 
+<!--			  </div>-->
+    </my-dialog> 
+	<div class="main-container" ui-view></div> 
+	<script src="vendor/angular/angular.min.js" charset="UTF-8"></script>
+	<script src="vendor/angular-ui-router/release/angular-ui-router.min.js" charset="UTF-8"></script>
+	<script src="vendor/angular-local-storage/dist/angular-local-storage.min.js" charset="UTF-8"></script>
+	<script src="js/index.js" charset="UTF-8"></script> 
+</body>
+</html>
