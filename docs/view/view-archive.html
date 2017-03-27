@@ -1,4 +1,6 @@
-<header-listview list-title="Archive"></header-listview>
+<bulk-edit-panel   view="archive" ng-show="archive.isBulkPanelOn" hide-bulk-panel="archive.closeBulkEditPanel()" item-number="{{archive.bulkEditList.length}}" bulk-readd="archive.bulkReadd()" bulk-favorite="archive.bulkFavorite()" bulk-delete="archive.bulkDelete()" bulk-add-tag="archive.bulkAddTag(taginput)"></bulk-edit-panel>
+<header-listview list-title="Archive" is-tile="archive.isTileStyle" bulk-edit="archive.openBulkEditPanel(status)" switch-list-style="archive.changeListStyle(status)"></header-listview>
 <div class="article-list">
-    <article-item class="article-item" my-article="article" view="archive" index="{{$index}}" ng-repeat="article in archive.articlelist"></article-item>
+    <article-item class="article-item" my-article="article" view="archive" index="{{$index}}"  is-bulk-edit="archive.isBulkPanelOn" add-to-bulk-edit-list="archive.addRemoveBulkEdit(article,index,view)" ng-repeat="article in archive.articlelist" ng-show="archive.isTileStyle"></article-item>
+    <article-item-list class="article-item-list" my-article="article"  view="archive" index="{{$index}}" is-bulk-edit="archive.isBulkPanelOn" add-to-bulk-edit-list="archive.addRemoveBulkEdit(article,index,view)" ng-repeat="article in archive.articlelist" ng-show="!archive.isTileStyle"></article-item-list>    
 </div>

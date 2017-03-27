@@ -1,0 +1,37 @@
+.tag-container {
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 3px;
+    text-align: left;
+    .tag-list {
+        display: inline-block;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        .tag-item {
+            display: inline-block;
+            .mr(3);
+            border: 0.5px solid #ccc;
+            border-radius: 2px;
+            color:@fontColor;
+            padding: 2px 4px;
+            .remove-single-tag {
+                .fs(11);
+                .ml(8);
+                color:#bbb;
+                &:hover {
+                    color:#555;
+                }
+            }
+        }
+    }
+    .tag-input {
+        display: inline-block;
+        .w(100);
+        border: none;
+        
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}

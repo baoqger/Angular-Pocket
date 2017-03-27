@@ -1,0 +1,40 @@
+<div class="item-content-list" ng-click="articleitemlist.click()"  ng-mouseover="articleitemlist.showActionList()" ng-mouseleave="articleitemlist.hideActionList()">
+    <img class="lead-image-list" ng-src="{{articleitemlist.myArticle.lead_image_url}}"></img>
+    <div class="right-container">
+        <p class="article-title ellipsis-oneline" >{{articleitemlist.myArticle.title}}</p>
+        <action-list class="action-list-view" view="{{articleitemlist.view}}" index="{{articleitemlist.index}}" show="articleitemlist.showactionlist && !articleitemlist.isBulkEdit" current-article="articleitemlist.myArticle" show-delete-dialog="articleitemlist.openDeleteDialog()" show-tag-dialog="articleitemlist.openTagDialog()"></action-list>
+        <div class="bottom-container-list">
+            <a class="original-link original-link-list">{{articleitemlist.myArticle.domain}}</a>
+            <ul class="taglistview">
+                <li class="taglistview-item" ng-repeat="tag in articleitemlist.myArticle.tags">{{tag}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<my-dialog show="articleitemlist.deletedialogShown" box-width="250px" box-height="130px" >
+    <div class="modal-header save-url-header">
+      <h4 class="modal-title delete-article-title">Are you sure?</h4>
+    </div>
+    <div class="modal-body delete-article-body">
+        <div class="form-group form-horizontal ta-c">
+            <button type="button" class="btn btn-default" ng-click="articleitemlist.closeDeleteDialog()">Cancel</button>
+            <button type="button" class="btn btn-warning" ng-click="articleitemlist.deleteArticle()">Delete</button>
+        </div>					
+    </div>				
+</my-dialog> 
+<my-dialog show="articleitemlist.tagdialogShown" box-width="450px" box-height="130px" >
+    <div class="modal-header save-url-header">
+      <h4 class="modal-title edit-tags-title">Edit tags</h4>
+    </div>
+    <div class="modal-body delete-article-body">
+        <div class="form-group form-horizontal ta-c">
+            <div class="col-sm-10 tag-container">
+                <ul class="tag-list" >
+                    <li class="tag-item" ng-repeat="tag in articleitemlist.myArticle.tags">{{tag}}<span class="glyphicon glyphicon-remove remove-single-tag" ng-click="articleitemlist.removeTag($index)"></span></li>
+                </ul>
+                <input type="text" class="form-control tag-input" id="tags" ng-model="articleitemlist.taginput">
+            </div>
+            <button type="button" class="btn btn-danger" ng-click="articleitemlist.addNewTag()">Save</button>
+        </div>					
+    </div>				
+</my-dialog> 

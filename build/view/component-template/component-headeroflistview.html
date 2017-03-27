@@ -2,9 +2,9 @@
     <h2>{{headeroflist.listTitle}}</h2>
     <div class="view-control">
 		<button class="view-control-item">
-			<span class="glyphicon glyphicon-th-list"  ng-show="true"  title="Switch to List View"></span>
-			<span class="glyphicon glyphicon-th"  ng-show="false"   data-placement="bottom"  title="Switch to Tile View"></span>
+			<span class="glyphicon glyphicon-th-list" title="Switch to List View" ng-show="headeroflist.isTile" ng-click="headeroflist.switchListStyle({status:false})"></span>
+			<span class="glyphicon glyphicon-th" data-placement="bottom"  title="Switch to Tile View" ng-show="!headeroflist.isTile" ng-click="headeroflist.switchListStyle({status:true})"></span>
 		</button>
-		<button class="view-control-item"><span class="glyphicon glyphicon-pencil" data-placement="bottom"  title="Bulk Edit"></span></button>
+		<button class="view-control-item"><span class="glyphicon glyphicon-pencil" data-placement="bottom"  title="Bulk Edit" ng-click="headeroflist.bulkEdit({status:true})"></span></button>
 	</div>
 </div>

@@ -1,0 +1,24 @@
+<div class="search-container" ng-class="{'search-done':search.articlelist.length > 0}">
+    <div class="search-panel">
+        <div class="panel-box">
+            <span class="glyphicon glyphicon-sort search-sort"></span>
+            <select class="form-control search-by-input" ng-change="search.updateSearch()" ng-model="search.currentView">
+                <option>My List</option>
+                <option>Archive</option>
+            </select>
+            <div class="favorite-container">
+                <p class="search-favorite" ng-show="search.filterFavoriteOn"><span class="glyphicon glyphicon-star favorite-icon"></span>Favorites<span class="glyphicon glyphicon-remove favorite-icon remove-icon" ng-click="search.removeFavoriteFilter()"></span></p>
+                <input type="text" class="form-control search-keyword" placeholder="Search" ng-keyup="search.searchResult()" ng-model="search.searchkeyword">
+            </div>
+            <span class="glyphicon glyphicon-remove close-search" ng-click="search.closeClick()"></span>           
+            
+        </div>
+    </div> 
+    <div class="search-result" ng-show="search.articlelist.length > 0">
+        <h2 class="result-header">{{search.articlelist.length}} Search Results</h2>
+        <div class="article-list article-list-search">
+            <article-item class="article-item" my-article="article" view="{{search.viewName}}" index="{{search.getIndexInOriginalList(article)}}"  ng-repeat="article in search.articlelist" ng-show="search.isTileStyle"></article-item>
+            <article-item-list class="article-item-list" my-article="article"  view="{{search.viewName}}" index="{{search.getIndexInOriginalList(article)}}" ng-repeat="article in search.articlelist" ng-show="!search.isTileStyle"></article-item-list>
+        </div> 
+    </div>
+</div>

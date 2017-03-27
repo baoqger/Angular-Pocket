@@ -1,4 +1,6 @@
-<header-listview list-title="Favorites"></header-listview>
+<bulk-edit-panel   view="favorites" ng-show="favorite.isBulkPanelOn" hide-bulk-panel="favorite.closeBulkEditPanel()" item-number="{{favorite.bulkEditList.length}}" bulk-archive="favorite.bulkArchive()" bulk-unfavorite="favorite.bulkUnfavorite()" bulk-delete="favorite.bulkDelete()" bulk-add-tag="favorite.bulkAddTag(taginput)"></bulk-edit-panel>
+<header-listview list-title="Favorites" is-tile="favorite.isTileStyle" bulk-edit="favorite.openBulkEditPanel(status)" switch-list-style="favorite.changeListStyle(status)"></header-listview>
 <div class="article-list">
-    <article-item class="article-item" my-article="article" view="favorites" index="{{$index}}" ng-repeat="article in favorite.articlelist"></article-item>
+    <article-item class="article-item" my-article="article" view="favorites" index="{{$index}}" is-bulk-edit="favorite.isBulkPanelOn" add-to-bulk-edit-list="favorite.addRemoveBulkEdit(article,index,view)" ng-repeat="article in favorite.articlelist" ng-show="favorite.isTileStyle"></article-item>
+    <article-item-list class="article-item-list" my-article="article"  view="favorites" index="{{$index}}" is-bulk-edit="favorite.isBulkPanelOn" add-to-bulk-edit-list="favorite.addRemoveBulkEdit(article,index,view)" ng-repeat="article in favorite.articlelist" ng-show="!favorite.isTileStyle"></article-item-list>
 </div>

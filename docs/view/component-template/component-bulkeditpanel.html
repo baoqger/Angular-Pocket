@@ -1,0 +1,40 @@
+<div class="bulkedit-panel">
+    <div class="bulkedit-container" >
+        <span class="selecteditem-number"><span ng-show="bulk.itemNumber > 0">{{bulk.itemNumber}} </span>Items Selected</span>
+        <ul class="actionlist-bulkedit" ng-class="{'bulk-actived':bulk.itemNumber > 0}">
+            <li class="actionitem-bulkedit" ng-show="bulk.view === 'mylist' || bulk.view === 'favorites'" ng-click="bulk.itemNumber > 0 && bulk.bulkArchive()"><span class="glyphicon glyphicon-ok"></span>Archive</li>					
+            <li class="actionitem-bulkedit" ng-show="bulk.view === 'archive'" ng-click="bulk.itemNumber > 0 && bulk.bulkReadd()"><span class="glyphicon glyphicon-plus"></span>Re-add</li>	
+            <li class="actionitem-bulkedit" ng-show="bulk.view === 'mylist' || bulk.view === 'archive'" ng-click="bulk.itemNumber > 0 && bulk.bulkFavorite()"><span class="glyphicon glyphicon-star"></span>Favorite</li>
+            <li class="actionitem-bulkedit" ng-show="bulk.view === 'favorites'" ng-click="bulk.itemNumber > 0 && bulk.bulkUnfavorite()"><span class="glyphicon glyphicon-star"></span>Unfavorite</li>
+            <li class="actionitem-bulkedit" ng-click="bulk.itemNumber > 0 && bulk.openBulkDelete()"><span  class="glyphicon glyphicon-trash"></span>Delete</li>
+            <li class="actionitem-bulkedit" ng-click="bulk.itemNumber > 0 && bulk.openBulkTag()"><span class="glyphicon glyphicon-tag"></span>Add Tag</li>
+        </ul>
+        <span class="glyphicon glyphicon-remove close-bulkedit" ng-click="bulk.hideBulkPanel()"></span>
+    </div>    
+</div>
+
+<my-dialog show="bulk.bulktagdialogShown" box-width="450px" box-height="130px" >
+    <div class="modal-header save-url-header ta-c">
+        <h4 class="modal-title edit-tags-title">Add tag<span>({{bulk.itemNumber}} items)</span></h4>
+    </div>
+    <div class="modal-body delete-article-body">
+        <div class="form-group form-horizontal ta-c">
+            <div class="col-sm-10 tag-container">
+                <input type="text" class="form-control tag-input" id="tags" ng-model="bulk.taginput">
+            </div>
+            <button type="button" class="btn btn-danger" ng-click="bulk.click()">Save</button>
+        </div>					
+    </div>				
+</my-dialog> 
+
+<my-dialog show="bulk.bulkdeletedialogShown" box-width="350px" box-height="130px" >
+    <div class="modal-header save-url-header">
+      <h4 class="modal-title delete-article-title">Are you sure? (Deleting {{bulk.itemNumber}} items)</h4>
+    </div>
+    <div class="modal-body delete-article-body">
+        <div class="form-group form-horizontal ta-c">
+            <button type="button" class="btn btn-default" ng-click="bulk.cancelDelete()">Cancel</button>
+            <button type="button" class="btn btn-warning" ng-click="bulk.deleteClick()">Delete</button>
+        </div>					
+    </div>				
+</my-dialog> 

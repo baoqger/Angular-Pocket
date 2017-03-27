@@ -6,7 +6,7 @@
         <span class="glyphicon glyphicon-plus" data-toggle="tooltip" title="Add to List" ng-click="actionlist.addBacktoList()" ng-show="actionlist.currentArticle.isArchive"></span>
         <span class="glyphicon glyphicon-ok"   data-toggle="tooltip" title="Archive" ng-click="actionlist.archive()" ng-show="!actionlist.currentArticle.isArchive"></span>
     </li>
-    <li class="action-item" data-toggle="modal" title="Delete" data-backdrop="true" ng-show="actionlist.show"><span  class="glyphicon glyphicon-trash"></span></li>
-    <li class="action-item" data-toggle="modal" title="Edit Tags" data-backdrop="true" ng-show="actionlist.show"><span class="glyphicon glyphicon-tag"></span></li>
+    <li class="action-item" data-toggle="modal" title="Delete" data-backdrop="true" ng-show="actionlist.show" ng-click="actionlist.showDeleteDialog()"><span  class="glyphicon glyphicon-trash"></span></li>
+    <li class="action-item" data-toggle="modal" title="Edit Tags" data-backdrop="true" ng-show="actionlist.show" ng-click="actionlist.showTagDialog()"><span class="glyphicon glyphicon-tag"></span></li>
     <li class="action-item" data-toggle="tooltip" title="Favorite" ng-show="actionlist.show || actionlist.currentArticle.isFavorite" ng-class="{'favorite-item': actionlist.currentArticle.isFavorite}" ng-click="actionlist.toggleFavorite()"><span class="glyphicon glyphicon-star"></span></li>
 </ul>
