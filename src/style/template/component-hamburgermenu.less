@@ -1,0 +1,77 @@
+.hambur-menu {   
+        .sliding-bar {
+            background: #fff;
+            .w(258);
+            position: fixed;
+            .t(0);
+            .b(0);
+            z-index: 500;
+            transform: translate3d(-258px, 0, 0);
+            transition: transform 1s;
+            .app-name {
+                margin: 0;
+                .h(50);
+                padding: 15px;
+                color: #aaa;
+                border-bottom: 1px solid #bbb;
+            }
+            .close-sliding {
+                position: absolute;
+                top: 15px;
+                right: 10px;
+                padding: 5px;
+                color: #aaa;
+                border-radius: 4px;
+                &:hover {
+                    color: #999;
+                    border: 1px solid #999;
+                }
+            }
+            .main-controlpanel {
+                clear: both;
+                list-style: none;
+                padding: 0;
+                .main-controlitem {
+                    .h(50);
+                    border-bottom: 1px solid #eee;
+                    padding: 10px;
+                    font-weight: bold;
+                    .fs(15);
+                    a {
+                       color: #999;
+                        &:hover {
+                            text-decoration: none;
+                            color: @highlightFontColor;
+                        }
+                    }
+                    .view-icon {
+                        color: #555;
+                        .mr(10);
+                        .pt(10);
+                    }
+                    &.active {
+                        a {
+                            color: @highlightFontColor;
+                        }
+                    }
+                }
+            }
+            &.sliding-bar-in {
+                transform: translate3d(0, 0, 0);
+                transition: transform 1s;              
+            }
+        }
+        .sliding-bar-cover {
+            position: fixed;
+            .t(0);
+            .b(0);
+            .r(0);
+            .l(0);
+            background:rgba(171,171,173,0.7);
+            z-index: 400;
+            visibility: hidden;
+            &.sliding-bar-cover-in {
+                visibility: visible;
+            }
+        }
+}

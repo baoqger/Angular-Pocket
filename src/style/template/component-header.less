@@ -1,4 +1,18 @@
 .header {
+
+    .hambur-icon {
+        display: none;
+        float: left;
+        .ml(20);
+        .fs(20);
+        .pt(15);         
+    }
+    .view-name {
+        display: none;
+        float: left;
+        padding: 13px;
+        .fs(18);
+    }
 	background: @headerBgColor;
 	.h(50);
 	color: @fontColor;
@@ -50,6 +64,33 @@
             }
         }
     }
+}
+@media screen and (max-width: 1000px) {
     
+    .header {
+        .hambur-icon {
+            display: inline-block;    
+        }
+        .navigation {
+            display: inline-block;
+            .navi-item {
+                padding: 14px;
+            }
+            #brandlist {
+                display: none;
+            }
+        }
+    }
 
+}
+
+@media screen and (max-width: 700px) {
+    .header {
+        .navigation {
+            display: none;
+        }
+        .view-name {
+            display: inline-block;
+        }        
+    }
 }

@@ -5,6 +5,19 @@
   font-style: normal;
   border-bottom: 1px solid #ccc;
 }
+.header .hambur-icon {
+  display: none;
+  float: left;
+  margin-left: 20px;
+  font-size: 20px;
+  padding-top: 15px;
+}
+.header .view-name {
+  display: none;
+  float: left;
+  padding: 13px;
+  font-size: 18px;
+}
 .header ul.navigation {
   list-style: none;
   margin: 0;
@@ -42,6 +55,28 @@
 }
 .header ul.navigation-right .navi-item:hover {
   color: #50bcb6;
+}
+@media screen and (max-width: 1000px) {
+  .header .hambur-icon {
+    display: inline-block;
+  }
+  .header .navigation {
+    display: inline-block;
+  }
+  .header .navigation .navi-item {
+    padding: 14px;
+  }
+  .header .navigation #brandlist {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .header .navigation {
+    display: none;
+  }
+  .header .view-name {
+    display: inline-block;
+  }
 }
 .f-l {
   float: left;
@@ -124,6 +159,14 @@
   width: calc(100% - 140px);
   float: right;
   padding: 15px 0 0 60px;
+}
+@media screen and (max-width: 1000px) {
+  .main-panel .main-leftpanel {
+    display: none;
+  }
+  .main-panel .main-righpanel {
+    width: 100%;
+  }
 }
 .ng-modal-overlay {
   /* A dark translucent div that covers the whole screen */
@@ -260,6 +303,11 @@
 }
 .list-header .view-control .view-control-item:hover {
   color: #555;
+}
+@media screen and (max-width: 700px) {
+  .list-header {
+    display: none;
+  }
 }
 .action-list {
   position: absolute;
@@ -590,6 +638,79 @@
   100% {
     transform: rotate(360deg);
   }
+}
+.hambur-menu .sliding-bar {
+  background: #fff;
+  width: 258px;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  z-index: 500;
+  transform: translate3d(-258px, 0, 0);
+  transition: transform 1s;
+}
+.hambur-menu .sliding-bar .app-name {
+  margin: 0;
+  height: 50px;
+  padding: 15px;
+  color: #aaa;
+  border-bottom: 1px solid #bbb;
+}
+.hambur-menu .sliding-bar .close-sliding {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  padding: 5px;
+  color: #aaa;
+  border-radius: 4px;
+}
+.hambur-menu .sliding-bar .close-sliding:hover {
+  color: #999;
+  border: 1px solid #999;
+}
+.hambur-menu .sliding-bar .main-controlpanel {
+  clear: both;
+  list-style: none;
+  padding: 0;
+}
+.hambur-menu .sliding-bar .main-controlpanel .main-controlitem {
+  height: 50px;
+  border-bottom: 1px solid #eee;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.hambur-menu .sliding-bar .main-controlpanel .main-controlitem a {
+  color: #999;
+}
+.hambur-menu .sliding-bar .main-controlpanel .main-controlitem a:hover {
+  text-decoration: none;
+  color: #50bcb6;
+}
+.hambur-menu .sliding-bar .main-controlpanel .main-controlitem .view-icon {
+  color: #555;
+  margin-right: 10px;
+  padding-top: 10px;
+}
+.hambur-menu .sliding-bar .main-controlpanel .main-controlitem.active a {
+  color: #50bcb6;
+}
+.hambur-menu .sliding-bar.sliding-bar-in {
+  transform: translate3d(0, 0, 0);
+  transition: transform 1s;
+}
+.hambur-menu .sliding-bar-cover {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background: rgba(171, 171, 173, 0.7);
+  z-index: 400;
+  visibility: hidden;
+}
+.hambur-menu .sliding-bar-cover.sliding-bar-cover-in {
+  visibility: visible;
 }
 html,
 body {

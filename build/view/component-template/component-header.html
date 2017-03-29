@@ -1,11 +1,13 @@
-  <div class="header p-r">
+<div class="header p-r">
+    <span class="glyphicon glyphicon-menu-hamburger hambur-icon" ng-click="$ctrl.openSlidingBar()"></span>  
+    <span class="view-name">{{$ctrl.viewname}}</span>
     <ul class="navigation">
-		<li class="navi-item" id="brandlist">Angular-Pocket</li>
-		<li class="navi-item" ui-sref="main" ui-sref-active="active"><a data-toggle="tooltip" title="Main" >Home</a></li>
-		<li class="navi-item" ui-sref="recommend" ui-sref-active="active"><a data-toggle="tooltip" title="Statistic">Recommended</a></li>	
+        <li class="navi-item" id="brandlist">Angular-Pocket</li>
+        <li class="navi-item" ui-sref="main" ui-sref-active="active"><a data-toggle="tooltip" title="Main" >Home</a></li>
+        <li class="navi-item" ui-sref="recommend" ui-sref-active="active"><a data-toggle="tooltip" title="Statistic">Recommended</a></li>	
     </ul>
     <ul class="navigation-right p-a">
 		<li class="navi-item"><span class="glyphicon glyphicon-search"  title="Search" ng-click="$ctrl.openSearchPanel()"></span></li>
 		<li class="navi-item"><span class="glyphicon glyphicon-plus"   title="Save a URL" ng-click="$ctrl.toggleUrldialog()"></span></li>
 	</ul>	
-  </div>
+</div>

@@ -55,9 +55,9 @@
         //call back function for ng-click on swtich list style button
         list.changeListStyle = function(status){
             //list.isTileStyle = status;
-            changeListStyle.changeStyle(status);
+            changeListStyle.changeStyle(status);//call the service method
             list.isTileStyle = changeListStyle.getCurrentStyle();
-            $rootScope.$broadcast("changeliststyle",{currentStatus: status});
+            $rootScope.$broadcast("changeliststyle",{currentStatus: status});//broadcast the event message to archive and favorite
             
         };
         //call back function for ng-click on open bulk panel button

@@ -1,6 +1,7 @@
 (function(){
     
-    function headerListviewDirective(){
+    headerListviewDirective.$inject = ['$window']
+    function headerListviewDirective($window){
         var ddo = {
             templateUrl: "view/component-template/component-headeroflistview.html",
             controller:"headerListviewController",
@@ -12,6 +13,15 @@
                 bulkEdit:"&",
                 isTile:"<"
             },
+            link:function(scope,element,attrs){
+                angular.element($window).bind("resize",function(){
+                    if ($window.innerWidth <= 700) {
+                        scope.$apply(function(){
+                            scope.headeroflist.switchListStyle({status:false});
+                        });
+                    }
+                })
+            }
         };
         return ddo;
     };

@@ -414,19 +414,107 @@
         .controller("myDialogController",myDialogController);
 })();
 (function(){
+    
+    hamburgerMenuDirective.$inject = ['$rootScope'];
+    function hamburgerMenuDirective($rootScope){
+        var ddo = {
+            templateUrl: "view/component-template/component-hamburgermenu.html",
+            controller:"hamburgerMenuController",
+            controllerAs: "hamburger",
+            bindToControler: true,
+            link:function(scope,element,attrs){
+                $rootScope.$on("openslidingbar",function(event,data){
+                    element.find(".sliding-bar").addClass("sliding-bar-in");
+                    element.find(".sliding-bar-cover").addClass("sliding-bar-cover-in");
+                });                
+                element.find(".close-sliding").on("click",function(){
+                    closeSlidingBar();
+                });
+                element.find(".sliding-bar-cover").on("click",function(){
+                    closeSlidingBar();
+                });
+                $rootScope.$on("$stateChangeStart",function(){
+                    closeSlidingBar();
+                });
+                function closeSlidingBar(){
+                    element.find(".sliding-bar").removeClass("sliding-bar-in");
+                    element.find(".sliding-bar-cover").removeClass("sliding-bar-cover-in");                    
+                };
+            }
+        }; 
+        return ddo;
+    };
+    
+    function hamburgerMenuController(){
+        var hamburger = this;
+        
+        hamburger.$onInit = function(){
+//            hamburger.shownSlidingBar = false;
+//            hamburger.buttonClick = function(){
+//                console.log("debugging button click")
+//                hamburger.shownSlidingBar = true;
+//            };
+//            hamburger.closeSlidingBar = function(){
+//                hamburger.shownSlidingBar = false;
+//            };
+        };
+        
+    };
+    
     angular
         .module("app")
-        .component("appHeader",{
-            templateUrl:"view/component-template/component-header.html",
-            bindings: {
-                toggleUrldialog: "&",
-                openSearchPanel:"&"
-            }
-        });
+        .directive("hamburgerMenu",hamburgerMenuDirective)
+        .controller("hamburgerMenuController",hamburgerMenuController);
 })();
 (function(){
     
-    function headerListviewDirective(){
+    function appHeaderDirective(){
+        var ddo = {
+            templateUrl:"view/component-template/component-header.html",
+            scope : {
+                toggleUrldialog: "&",
+                openSearchPanel:"&"                
+            },
+            controller: "appHeaderController",
+            controllerAs: "$ctrl",
+            bindToController: true
+        };
+        return ddo;
+    };
+    
+    appHeaderController.$inject = ['$rootScope'];
+    function appHeaderController($rootScope){
+        var appheader = this;
+        appheader.$onInit = function(){
+            //call back function on the hamberger button
+            appheader.openSlidingBar = function(){
+                //broadcast the openslidingbar event to slidingbar component
+                $rootScope.$broadcast("openslidingbar",{});
+            };            
+        };
+        //listen to the event for the state change to get the current view name
+        $rootScope.$on("$stateChangeSuccess",function(event, toState, toParams, fromState, fromParams, options){
+            appheader.viewname =  toState.name.split(".")[1].charAt(0).toUpperCase() + toState.name.split(".")[1].slice(1);
+        });
+    };
+    
+    angular
+        .module("app")
+//        .component("appHeader",{
+//            templateUrl:"view/component-template/component-header.html",
+//            bindings: {
+//                toggleUrldialog: "&",
+//                openSearchPanel:"&"
+//            }
+//        })
+        .directive("appHeader",appHeaderDirective)
+        .controller("appHeaderController",appHeaderController);
+    
+})();
+(function(){
+    
+    headerListviewDirective.$inject = ['$window']
+    function headerListviewDirective($window){
         var ddo = {
             templateUrl: "view/component-template/component-headeroflistview.html",
             controller:"headerListviewController",
@@ -438,6 +526,15 @@
                 bulkEdit:"&",
                 isTile:"<"
             },
+            link:function(scope,element,attrs){
+                angular.element($window).bind("resize",function(){
+                    if ($window.innerWidth <= 700) {
+                        scope.$apply(function(){
+                            scope.headeroflist.switchListStyle({status:false});
+                        });
+                    }
+                })
+            }
         };
         return ddo;
     };
@@ -873,9 +970,9 @@
         //call back function for ng-click on swtich list style button
         list.changeListStyle = function(status){
             //list.isTileStyle = status;
-            changeListStyle.changeStyle(status);
+            changeListStyle.changeStyle(status);//call the service method
             list.isTileStyle = changeListStyle.getCurrentStyle();
-            $rootScope.$broadcast("changeliststyle",{currentStatus: status});
+            $rootScope.$broadcast("changeliststyle",{currentStatus: status});//broadcast the event message to archive and favorite
             
         };
         //call back function for ng-click on open bulk panel button
