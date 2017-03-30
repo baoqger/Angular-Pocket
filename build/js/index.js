@@ -165,9 +165,9 @@
         return ddo;
     } 
     
-    articleItemController.$inject = ['localStorageHandling','$scope','$rootScope'];
+    articleItemController.$inject = ['localStorageHandling','$scope','$rootScope','$state'];
     
-    function articleItemController(localStorageHandling,$scope,$rootScope){
+    function articleItemController(localStorageHandling,$scope,$rootScope,$state){
         var articleitem = this;
         
         articleitem.showactionlist = false; //the property to control the show/hide of actionlist 
@@ -185,8 +185,10 @@
                 articleitem.showactionlist = false;
             };
             articleitem.click = function(){
-                if (articleitem.isBulkEdit){
+                if (articleitem.isBulkEdit){ //in bulkedit mode
                     articleitem.addToBulkEditList({article:articleitem.myArticle, index:articleitem.index, view:articleitem.view});
+                } else { //not in bulkedit mode, go to read state with specific params
+                    $state.go('read',{id:articleitem.index,view:articleitem.view,article:articleitem.myArticle});
                 }
                 
             };
@@ -266,9 +268,9 @@
         return ddo;
     };
     
-    articleItemListController.$inject = ['localStorageHandling','$scope'];
+    articleItemListController.$inject = ['localStorageHandling','$scope','$state'];
     
-    function articleItemListController(localStorageHandling,$scope) {
+    function articleItemListController(localStorageHandling,$scope,$state) {
         var articleitemlist = this;
         
         articleitemlist.showactionlist = false; //the property to control the show/hide of actionlist 
@@ -287,8 +289,10 @@
                 articleitemlist.showactionlist = false;
             };
             articleitemlist.click = function(){
-                if (articleitemlist.isBulkEdit){
+                if (articleitemlist.isBulkEdit){ //in bulkedit mode
                     articleitemlist.addToBulkEditList({article:articleitemlist.myArticle, index:articleitemlist.index, view:articleitemlist.view});
+                } else {//not in bulkedit mode, go to read state with specific params
+                    $state.go('read',{id:articleitemlist.index,view:articleitemlist.view,article:articleitemlist.myArticle});
                 }
                 
             };

@@ -30,9 +30,9 @@
         return ddo;
     };
     
-    articleItemListController.$inject = ['localStorageHandling','$scope'];
+    articleItemListController.$inject = ['localStorageHandling','$scope','$state'];
     
-    function articleItemListController(localStorageHandling,$scope) {
+    function articleItemListController(localStorageHandling,$scope,$state) {
         var articleitemlist = this;
         
         articleitemlist.showactionlist = false; //the property to control the show/hide of actionlist 
@@ -51,8 +51,10 @@
                 articleitemlist.showactionlist = false;
             };
             articleitemlist.click = function(){
-                if (articleitemlist.isBulkEdit){
+                if (articleitemlist.isBulkEdit){ //in bulkedit mode
                     articleitemlist.addToBulkEditList({article:articleitemlist.myArticle, index:articleitemlist.index, view:articleitemlist.view});
+                } else {//not in bulkedit mode, go to read state with specific params
+                    $state.go('read',{id:articleitemlist.index,view:articleitemlist.view,article:articleitemlist.myArticle});
                 }
                 
             };
