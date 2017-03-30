@@ -12,6 +12,7 @@
                 headers: {"x-api-key": "M1USTPmJMiRjtbjFNkNap9Z8M5XBb1aEQVXoxS5I"} 
             }).then(function(response){
                 var newArticle = response.data;
+                console.log(newArticle);
                 newArticle.isArchive = false; //add isArchive property to article obj
                 newArticle.isFavorite = false; //add isFavorite property to article obj
                 newArticle.tags = [];// add tags property to article obj

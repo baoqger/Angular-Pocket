@@ -616,7 +616,7 @@
   z-index: 300;
   width: 150px;
   height: 150px;
-  margin: -75px 0 0 75px;
+  margin: -75px 0 0 -75px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #3498db;
@@ -711,6 +711,52 @@
 }
 .hambur-menu .sliding-bar-cover.sliding-bar-cover-in {
   visibility: visible;
+}
+.article-container {
+  max-width: 704px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.article-container .read-header {
+  margin-bottom: 35px;
+  text-align: left;
+}
+.article-container .read-header h1 {
+  color: #222;
+  font-weight: 700;
+  font-family: serif;
+}
+.article-container .read-header .author,
+.article-container .read-header .date {
+  display: block;
+  color: #bbb;
+  font-weight: bold;
+}
+.article-container .read-body img {
+  max-width: 604px;
+}
+.article-container .read-body p {
+  line-height: 1.5;
+  margin: 0 0 30px;
+  text-align: left;
+  font-size: 23px;
+  font-style: normal;
+  font-weight: normal;
+  font-family: serif;
+}
+.reviewer-head {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  top: 0px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.reviewer-head .back-view {
+  color: #999;
+  margin-left: 20px;
+  font-size: 20px;
+  padding-top: 15px;
 }
 html,
 body {

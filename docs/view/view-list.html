@@ -1,7 +1,7 @@
 <bulk-edit-panel view="mylist"  ng-show="list.isBulkPanelOn" hide-bulk-panel="list.closeBulkEditPanel()" item-number="{{list.bulkEditList.length}}" bulk-archive="list.bulkArchive()" bulk-favorite="list.bulkFavorite()" bulk-delete="list.bulkDelete()" bulk-add-tag="list.bulkAddTag(taginput)"></bulk-edit-panel>
 <header-listview list-title="My List" is-tile="list.isTileStyle" switch-list-style="list.changeListStyle(status)" bulk-edit="list.openBulkEditPanel(status)"></header-listview>
 <div class="article-list">
-    <article-item class="article-item" my-article="article" view="mylist" index="{{$index}}" is-bulk-edit="list.isBulkPanelOn" add-to-bulk-edit-list="list.addRemoveBulkEdit(article,index,view)" ng-repeat="article in list.articlelist" ng-show="list.isTileStyle"></article-item>
+    <article-item class="article-item" my-article="article" view="mylist" index="{{$index}}" is-bulk-edit="list.isBulkPanelOn" add-to-bulk-edit-list="list.addRemoveBulkEdit(article,index,view)" ng-repeat="article in list.articlelist" ng-show="list.isTileStyle" ></article-item>
     <article-item-list class="article-item-list" my-article="article"  view="mylist" index="{{$index}}" is-bulk-edit="list.isBulkPanelOn" add-to-bulk-edit-list="list.addRemoveBulkEdit(article,index,view)" ng-repeat="article in list.articlelist" ng-show="!list.isTileStyle"></article-item-list>
 </div>   
     

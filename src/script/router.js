@@ -51,6 +51,20 @@
                     return changeListStyle.getCurrentStyle();
                 }
             }
+        }).state("read",{
+            url:"/read/:view/:id",
+            templateUrl: "view/view-read.html",
+            controller: "readCtrl as read",
+            params: {
+                view:null,
+                id:null,
+                article:null
+            },
+//            resolve: {
+//                content: function($stateParams){
+//                    return $stateParams.content;
+//                }
+//            },
         })
     }
 })();

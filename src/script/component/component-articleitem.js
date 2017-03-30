@@ -58,7 +58,8 @@
             };
             //call back function of open delete dialog for ng-click event on the delete button in the actionlist
             articleitem.openDeleteDialog = function(){
-                articleitem.deletedialogShown = true; 
+                articleitem.deletedialogShown = true;
+                
             };
             //call back function of close delete dialog for ng-click event on the cancel button in the delete dialog
             articleitem.closeDeleteDialog = function(){

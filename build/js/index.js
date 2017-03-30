@@ -62,6 +62,20 @@
                     return changeListStyle.getCurrentStyle();
                 }
             }
+        }).state("read",{
+            url:"/read/:view/:id",
+            templateUrl: "view/view-read.html",
+            controller: "readCtrl as read",
+            params: {
+                view:null,
+                id:null,
+                article:null
+            },
+//            resolve: {
+//                content: function($stateParams){
+//                    return $stateParams.content;
+//                }
+//            },
         })
     }
 })();
@@ -178,7 +192,8 @@
             };
             //call back function of open delete dialog for ng-click event on the delete button in the actionlist
             articleitem.openDeleteDialog = function(){
-                articleitem.deletedialogShown = true; 
+                articleitem.deletedialogShown = true;
+                
             };
             //call back function of close delete dialog for ng-click event on the cancel button in the delete dialog
             articleitem.closeDeleteDialog = function(){
@@ -318,6 +333,50 @@
         .directive("articleItemList",articleItemListDirective)
         .controller("articleItemListController",articleItemListController);
     
+})();
+(function(){
+    
+    function articleReviewerDirective(){
+        var ddo = {
+//            template: function(){
+//                console.log("debugging template function...")
+//                return '<h2>try template</2>';
+//            },
+            scope:{
+                article:"<"
+            },
+            controller: "articleReviewerController",
+            controllerAs: "reviewer",
+            bindToController: true,
+            link: function(scope,element,attrs){
+                if (scope.reviewer.article){
+                     element.html('<div class="article-container"></div>'); //set the container div element for the whole page
+                    //var articleObj = JSON.parse(scope.reviewer.article);
+                    var header = angular.element('<div class="read-header"></div>');//set up the read-header div
+                    var h1 = angular.element('<h1></h1>').html(scope.reviewer.article.title);//set up the h1 element
+                    var author = angular.element('<span></span>').html(scope.reviewer.article.author).addClass("author");
+                    var date = angular.element('<span></span>').html(scope.reviewer.article.date_published).addClass("date");
+                    header.append(h1,author,date);
+                    var textbody = angular.element(scope.reviewer.article.content).addClass("read-body");//set up the read-body element
+
+                    element.find(".article-container").append(header).append(textbody);//append the read-header and read-body to parent element                   
+                }    
+            },
+        };
+        return ddo;
+    };
+    
+    function articleReviewerController(){
+        var reviewer = this;
+        reviewer.$onInit = function(){
+            console.log("debugging reviewer...")            
+        };
+    };
+    
+    angular
+        .module("app")
+        .directive("articleReviewer",articleReviewerDirective)
+        .controller("articleReviewerController",articleReviewerController);
 })();
 (function(){
     
@@ -494,19 +553,14 @@
         };
         //listen to the event for the state change to get the current view name
         $rootScope.$on("$stateChangeSuccess",function(event, toState, toParams, fromState, fromParams, options){
-            appheader.viewname =  toState.name.split(".")[1].charAt(0).toUpperCase() + toState.name.split(".")[1].slice(1);
+            if (toState.name.split(".").length > 1){
+                appheader.viewname =  toState.name.split(".")[1].charAt(0).toUpperCase() + toState.name.split(".")[1].slice(1);
+            }
         });
     };
     
     angular
         .module("app")
-//        .component("appHeader",{
-//            templateUrl:"view/component-template/component-header.html",
-//            bindings: {
-//                toggleUrldialog: "&",
-//                openSearchPanel:"&"
-//            }
-//        })
         .directive("appHeader",appHeaderDirective)
         .controller("appHeaderController",appHeaderController);
     
@@ -550,6 +604,31 @@
         .directive("headerListview",headerListviewDirective)
         .controller("headerListviewController",headerListviewController)
     
+})();
+(function(){
+    reviewerHeaderDirective.$inject = ['$window'];
+    function reviewerHeaderDirective($window){
+        var ddo = {
+            templateUrl: "view/component-template/component-headerofreviewer.html",
+            controller: "reviewerHeaderController",
+            controllerAs:"reviewerheader",
+            bindToController: true,
+            link: function(scope,element,attrs){
+                element.on("click",function(){
+                    $window.history.back(); //history API of build in $window service
+                })
+            }
+        };
+        return ddo;
+    };
+    
+    function reviewerHeaderController(){
+        var reviewerheader = this;
+    };
+    angular
+        .module("app")
+        .directive("reviewerHeader",reviewerHeaderDirective)
+        .controller("reviewerHeaderController",reviewerHeaderController);
 })();
 (function(){
     angular
@@ -1046,6 +1125,17 @@
     angular
         .module("app")
         .controller("mainCtrl",mainCtrl);
+})();
+(function(){
+    readCtrl.$inject = ['$stateParams'];
+    function readCtrl($stateParams){
+        var read = this;
+        read.article = $stateParams.article;
+    };
+    
+    angular
+        .module("app")
+        .controller("readCtrl",readCtrl);
 })();
 (function(){
     
@@ -1555,6 +1645,7 @@
                 headers: {"x-api-key": "M1USTPmJMiRjtbjFNkNap9Z8M5XBb1aEQVXoxS5I"} 
             }).then(function(response){
                 var newArticle = response.data;
+                console.log(newArticle);
                 newArticle.isArchive = false; //add isArchive property to article obj
                 newArticle.isFavorite = false; //add isFavorite property to article obj
                 newArticle.tags = [];// add tags property to article obj
