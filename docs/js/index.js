@@ -1015,7 +1015,7 @@
         $rootScope.$on('addNewURL',function(event,data){
             //webScraper.addNewArticle(data.url);
             webScraper.addNewArticle(data.url).then(function(){
-                var lengthbeforeadd = list.articlelist.length;
+                var lengthbeforeadd = list.articlelist?list.articlelist.length:0;
                 list.articlelist = localStorageHandling.getCurrentList(); //update the currentlist
                 //broadcase the toastmessage
                 var lengthafteradd = list.articlelist.length;
@@ -1053,6 +1053,7 @@
         //call back function for ng-click on swtich list style button
         list.changeListStyle = function(status){
             //list.isTileStyle = status;
+            console.log("debugging firfox...")
             changeListStyle.changeStyle(status);//call the service method
             list.isTileStyle = changeListStyle.getCurrentStyle();
             $rootScope.$broadcast("changeliststyle",{currentStatus: status});//broadcast the event message to archive and favorite
@@ -1060,6 +1061,7 @@
         };
         //call back function for ng-click on open bulk panel button
         list.openBulkEditPanel = function(){
+            console.log("debugging firfox...");
             list.bulkEditList.length = 0;
             list.isBulkPanelOn = true;
         };
