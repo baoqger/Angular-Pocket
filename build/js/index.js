@@ -600,6 +600,14 @@
     function headerListviewController(){
         var header = this;
         header.$onInit = function(){
+            header.clickChangeStyle = function(){
+                console.log(header.isTile)
+                if (header.isTile) {
+                    header.switchListStyle({status:false});
+                } else {
+                    header.switchListStyle({status:true});
+                }
+            }
         };
     };
     

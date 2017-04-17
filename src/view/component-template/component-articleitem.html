@@ -1,5 +1,9 @@
 <div class="item-content" ng-click="articleitem.click()" ng-mouseover="articleitem.showActionList()" ng-mouseleave="articleitem.hideActionList()" >
-    <p class="article-title ellipsis-threelines-new" >{{articleitem.myArticle.title}}</p>
+    <div class="ellipsis" >
+        <div>
+            <p class="article-title">{{articleitem.myArticle.title}}</p>    
+        </div>
+    </div>
     <img class="lead-image" ng-src="{{articleitem.myArticle.lead_image_url}}" ></img>
     <div class="bottom-container">
         <div class="bottom-inform">

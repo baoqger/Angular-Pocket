@@ -1,10 +1,10 @@
 <div class="list-header">
     <h2>{{headeroflist.listTitle}}</h2>
     <div class="view-control">
-		<button class="view-control-item">
-			<span class="glyphicon glyphicon-th-list" data-toggle="tooltip" title="Switch to List View" ng-show="headeroflist.isTile" ng-click="headeroflist.switchListStyle({status:false})"></span>
-			<span class="glyphicon glyphicon-th" data-placement="bottom" data-toggle="tooltip" title="Switch to Tile View" ng-show="!headeroflist.isTile" ng-click="headeroflist.switchListStyle({status:true})"></span>
+		<button class="view-control-item" ng-click="headeroflist.clickChangeStyle()" data-placement="bottom" data-toggle="tooltip" title="{{headeroflist.isTile?'Switch to List View':'Switch to Tile View'}}">
+			<span class="glyphicon glyphicon-th-list" ng-show="headeroflist.isTile"></span>
+			<span class="glyphicon glyphicon-th" ng-show="!headeroflist.isTile"></span>
 		</button>
-		<button class="view-control-item"><span class="glyphicon glyphicon-pencil" data-placement="bottom" data-toggle="tooltip" title="Bulk Edit" ng-click="headeroflist.bulkEdit({status:true})"></span></button>
+		<button class="view-control-item" data-placement="bottom" data-toggle="tooltip" title="Bulk Edit" ng-click="headeroflist.bulkEdit({status:true})"><span class="glyphicon glyphicon-pencil"></span></button>
 	</div>
 </div>
